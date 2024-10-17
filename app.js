@@ -1,9 +1,11 @@
 const express = require("express");
 const app = express();
+const newRouter = require("./routes/newRouter");
 const authorRouter = require("./routes/authorRouter");
 const bookRouter = require("./routes/bookRouter");
 const indexRouter = require("./routes/indexRouter");
 const path = require("node:path");
+
 // app.js
 const links = [
     { href: "/", text: "Home" },
@@ -25,7 +27,16 @@ const links = [
 
   const users = ["Rose", "Cake", "Biff"];
 
-   
+  app.get("/new", (req, res) => {
+    res.render("Form", { title: "Mini Messageboard", messages: messages })
+    res.render("Form", { links: links, users: users });
+  });
+
+
+  app.get("/form", (req, res) => {
+    res.render("Form", { title: "Mini Messageboard", messages: messages })
+    res.render("Form", { links: links, users: users });
+  });
 
   app.get("/", (req, res) => {
     res.render("index", { title: "Mini Messageboard", messages: messages })
@@ -41,6 +52,7 @@ app.set("view engine", "ejs");
   //});
   
 
+app.use("/new", newRouter);
 app.use("/authors", authorRouter);
 app.use("/books", bookRouter);
 app.use("/", indexRouter);
