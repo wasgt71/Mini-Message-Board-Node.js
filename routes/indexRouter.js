@@ -2,22 +2,28 @@ const { Router } = require("express");
 const indexRouter = Router();
 
 const messages = [
-    {
-      text: "Hi there!",
-      user: "Amando",
-      added: new Date()
-    },
-    {
-      text: "Hello World!",
-      user: "Charles",
-      added: new Date()
-    }
-  ];
+  {
+    text: "Hi there!",
+    user: "Amando",
+    added: new Date(),
+  },
+  {
+    text: "Hello World!",
+    user: "Charles",
+    added: new Date(),
+  },
+];
 
-indexRouter.get("/", (req, res) => res.send("This ones index"));
-indexRouter.get("/:indexId", (req, res) => {
-  const { indexId } = req.params;
-  res.send(`Index ID: ${indexId}`);
+indexRouter.get("/", (req, res) => {
+  res.render("index", { title: "Mini Messageboard", messages: messages });
+  });
+
+indexRouter.post("/new", (req, res) => {
+  const { inputAuthor, inputMessage } = req.body;
+  messages.push({text:inputMessage,user:inputAuthor,added:new Date()});
+  console.log(messages);
+  res.redirect("/")
 });
+
 
 module.exports = indexRouter;

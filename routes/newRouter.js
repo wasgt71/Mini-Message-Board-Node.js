@@ -1,10 +1,9 @@
 const { Router } = require("express");
 const newRouter = Router();
 
-newRouter.get("/form", (req, res) => res.send(data));
-newRouter.get("/:newId", (req, res) => {
-  const { newId } = req.params;
-  res.send(`New ID: ${newId}`);
-});
+newRouter.get("/new", (req, res) => {
+  res.render("form", { data });
+})
+
 
 module.exports = newRouter;

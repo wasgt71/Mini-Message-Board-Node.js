@@ -5,12 +5,11 @@
   </head>
   <body>
     <ul>
-    <% messages.map((message) => {%>
-     <li><%= message.text %></li>
-     <li><%= message.user %></li>
-     <li><%=message.added %></li>
-     <% }) %>
+      <% messages.map((message) => {%>
+      <li><%= message.text %></li>
+      <li><%= message.user %></li>
+      <li><%=message.added %></li>
+      <% }) %>
     </ul>
   </body>
 </html>
-
